@@ -1,0 +1,219 @@
+:root {
+    /* Light Theme Variables */
+    --bg-color-light: #f8f9fa;
+    --text-color-light: #212529;
+    --accent-color-light: #007bff;
+    --accent-hover-light: #0056b3;
+    --stop-color-light: #dc3545;
+    --stop-hover-light: #c82333;
+    --icon-color-light: var(--accent-color-light); /* For h1 icon */
+    --icon-on-light-button: #ffffff; /* For session button icon in light mode */
+    --switch-bg-light: #ced4da;
+    --switch-knob-light: #ffffff;
+    --switch-active-bg-light: var(--accent-color-light);
+
+    /* Dark Theme Variables */
+    --bg-color-dark: #121212;
+    --text-color-dark: #e9ecef;
+    --icon-on-dark-button: #f0f0f0; /* Light color for icons on dark buttons */
+    --accent-color-dark: #3793ff; 
+    --accent-hover-dark: #0d6efd;
+    --stop-color-dark: #e53e3e; 
+    --stop-hover-dark: #c93030;
+    --icon-color-dark: var(--accent-color-dark); /* For h1 icon */
+    --switch-bg-dark: #495057;
+    --switch-knob-dark: #343a40;
+    --switch-active-bg-dark: var(--accent-color-dark);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 1rem; 
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s, color 0.3s;
+    box-sizing: border-box; 
+}
+
+h1 {
+    margin-bottom: 2rem; 
+    color: var(--text-color-light);
+    font-size: 2.5rem; 
+    font-weight: 600;
+    transition: color 0.3s;
+    text-align: center; /* May be overridden by flex, but good fallback */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* To keep h1 content centered */
+}
+
+#sessionToggleButton {
+    background-color: var(--accent-color-light);
+    color: var(--icon-on-light-button); 
+    font-size: 1.4rem; 
+    margin-top: 1rem; 
+    margin-bottom: 1rem; 
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.15s ease-in-out;
+    width: 70px; 
+    height: 70px; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+
+#sessionToggleButton:hover:not(:disabled) { /* Only apply hover when not disabled */
+    transform: scale(1.08); 
+    background-color: var(--accent-hover-light);
+}
+
+#sessionToggleButton.active-session {
+    background-color: var(--stop-color-light);
+}
+#sessionToggleButton.active-session:hover:not(:disabled) {
+    background-color: var(--stop-hover-light);
+}
+
+/* Styles for the loading state */
+#sessionToggleButton.loading-state {
+    cursor: wait;
+}
+
+#sessionToggleButton.loading-state:disabled {
+    background-color: var(--accent-color-light);
+    color: var(--icon-on-light-button);
+    opacity: 0.9; 
+    cursor: wait;
+    transform: scale(1); 
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem; 
+    }
+    #sessionToggleButton {
+        width: 64px;
+        height: 64px;
+        font-size: 1.3rem;
+        margin-top: 0.5rem;
+    }
+}
+
+#rev-logo-h1 {
+    width: 5rem; /* Updated size */
+    height: 5rem; /* Updated size */
+    margin-right: 0.75rem; /* Original margin */
+}
+
+.theme-switch-label {
+    position: fixed; 
+    top: 1.5rem;    
+    right: 1.5rem;   
+    z-index: 1000;   
+    display: inline-block;
+    width: 48px; 
+    height: 24px;
+    cursor: pointer;
+}
+
+#theme-toggle {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--switch-bg-light);
+    border-radius: 24px;
+    transition: background-color .4s;
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 18px; 
+    width: 18px;  
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--switch-knob-light);
+    border-radius: 50%;
+    transition: transform .4s, background-color .4s;
+}
+
+#theme-toggle:checked + .slider {
+    background-color: var(--switch-active-bg-light);
+}
+
+#theme-toggle:checked + .slider::before {
+    transform: translateX(24px); 
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark-mode h1 {
+    color: var(--text-color-dark);
+}
+
+body.dark-mode #sessionToggleButton {
+    background-color: var(--accent-color-dark);
+    color: var(--icon-on-dark-button); 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+}
+
+body.dark-mode #sessionToggleButton.active-session {
+    background-color: var(--stop-color-dark);
+}
+
+body.dark-mode #sessionToggleButton.loading-state:disabled {
+    background-color: var(--accent-color-dark);
+    color: var(--icon-on-dark-button);
+    opacity: 0.9;
+}
+
+body.dark-mode #sessionToggleButton:hover:not(:disabled) {
+     background-color: var(--accent-hover-dark);
+}
+body.dark-mode #sessionToggleButton.active-session:hover:not(:disabled) {
+    background-color: var(--stop-hover-dark);
+}
+
+body.dark-mode .slider {
+    background-color: var(--switch-bg-dark);
+}
+body.dark-mode .slider::before {
+    background-color: var(--switch-knob-dark);
+}
+
+body.dark-mode #theme-toggle:checked + .slider {
+    background-color: var(--switch-active-bg-dark);
+}
+
+#revolt-logo {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 50px;
+    height: auto;
+    transition: filter 0.3s ease;
+}
+
+body.dark-mode #revolt-logo {
+    filter: invert(1) brightness(2);
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk to Rev</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <img id="revolt-logo" src="images/revolt_logo.svg" alt="Revolt Logo">
+    <label class="theme-switch-label">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+    </label>
+
+    <h1><img src="images/Rev.gif" alt="Rev Logo" id="rev-logo-h1"> Talk to Rev</h1>
+    <button id="sessionToggleButton" aria-label="Start session">
+            <i class="fas fa-microphone"></i>
+    </button>
+
+    <script src="app.js"></script>
+    <div id="error-alert" class="hidden">
+  <p id="error-message"></p>
+  <button onclick="document.getElementById('error-alert').classList.add('hidden')">
+    Dismiss
+  </button>
+</div>
+
+<style>
+  .hidden { display: none; }
+  #error-alert {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px;
+    background: #ff4444;
+    color: white;
+    border-radius: 5px;
+  }
+</style>
+</body>
+</html>
